@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "classes": {
+      "title": "Classroom",
+      "description": "Lớp học do giáo viên phụ trách",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "school": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "gradeLevel": { "type": "number" },
+        "teacherName": { "type": "string" },
+        "teacherPhone": { "type": "string" },
+        "room": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "school", "teacherName"]
+    },
+    "students": {
+      "title": "Student",
+      "description": "Hồ sơ học sinh lớp 4",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "code": { "type": "string" },
+        "fullName": { "type": "string" },
+        "gender": { "type": "string" },
+        "dob": { "type": "string" },
+        "parentName": { "type": "string" },
+        "parentPhone": { "type": "string" },
+        "address": { "type": "string" },
+        "group": { "type": "string" },
+        "position": { "type": "string" },
+        "status": { "type": "string" },
+        "rewardStars": { "type": "number" },
+        "healthNote": { "type": "string" },
+        "strengths": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "gender"]
+    },
+    "attendance": {
+      "title": "Attendance",
+      "description": "Sổ điểm danh hàng ngày",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "date": { "type": "string" },
+        "records": { "type": "object" },
+        "totalPresent": { "type": "number" },
+        "totalAbsent": { "type": "number" },
+        "totalLate": { "type": "number" },
+        "note": { "type": "string" }
+      },
+      "required": ["date", "records"]
+    },
+    "grades": {
+      "title": "Grades",
+      "description": "Bảng điểm và đánh giá theo môn học",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "term": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "records": { "type": "object" }
+      },
+      "required": ["term", "subjectId"]
+    },
+    "evaluations": {
+      "title": "Evaluation",
+      "description": "Sổ liên lạc và Đánh giá học bạ định kỳ (TT27)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "term": { "type": "string" },
+        "studentId": { "type": "string" },
+        "competencies": { "type": "object" },
+        "qualities": { "type": "object" },
+        "teacherComment": { "type": "string" },
+        "title": { "type": "string" },
+        "rewardFlowerCount": { "type": "number" }
+      },
+      "required": ["studentId", "term"]
+    },
+    "timetable": {
+      "title": "Timetable",
+      "description": "Thời khóa biểu tuần của lớp 4",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "days": { "type": "object" }
+      }
+    },
+    "events": {
+      "title": "Events",
+      "description": "Lịch sự kiện, kiểm tra, họp phụ huynh",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "classId": { "type": "string" },
+        "title": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "type": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "date"]
+    }
+  }
+}
