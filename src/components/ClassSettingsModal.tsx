@@ -159,20 +159,20 @@ export const ClassSettingsModal: React.FC<ClassSettingsModalProps> = ({
           </div>
 
           {/* Data Reset Tools */}
-          <div className="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200 space-y-2">
-            <span className="font-bold text-amber-900 block">Dữ liệu mẫu & Bắt đầu lại</span>
+          <div className="p-2.5 rounded bg-amber-50/60 border border-amber-200 space-y-1.5">
+            <span className="font-bold text-amber-900 block text-xs">Dữ liệu mẫu & Bắt đầu lại</span>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => {
-                  if (confirm("Khôi phục lại dữ liệu mẫu Lớp 4A với 12 học sinh, thời khóa biểu và bảng điểm chuẩn?")) {
+                  if (confirm("Khôi phục lại danh sách 32 học sinh Lớp 4A, thời khóa biểu và bảng điểm chuẩn?")) {
                     onResetToSampleData();
                     onClose();
                   }
                 }}
-                className="px-3 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-800 font-semibold hover:bg-amber-100 cursor-pointer"
+                className="px-2.5 py-1 rounded bg-white border border-amber-300 text-amber-800 font-semibold text-[11px] hover:bg-amber-100 cursor-pointer"
               >
-                Khôi phục dữ liệu mẫu Lớp 4
+                Khôi phục danh sách 32 học sinh Lớp 4
               </button>
 
               <button
@@ -183,7 +183,7 @@ export const ClassSettingsModal: React.FC<ClassSettingsModalProps> = ({
                     onClose();
                   }
                 }}
-                className="px-3 py-1.5 rounded-lg bg-white border border-rose-300 text-rose-700 font-semibold hover:bg-rose-50 cursor-pointer"
+                className="px-2.5 py-1 rounded bg-white border border-rose-300 text-rose-700 font-semibold text-[11px] hover:bg-rose-50 cursor-pointer"
               >
                 Xóa sạch để tạo lớp mới
               </button>

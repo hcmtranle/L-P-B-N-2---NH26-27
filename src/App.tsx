@@ -34,17 +34,45 @@ export default function App() {
   // App States with localStorage initialization
   const [classInfo, setClassInfo] = useState<ClassInfo>(() => {
     const saved = localStorage.getItem("class_info");
-    return saved ? JSON.parse(saved) : DEFAULT_CLASS_INFO;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { ...parsed, totalStudents: 32 };
+    }
+    return DEFAULT_CLASS_INFO;
   });
 
   const [students, setStudents] = useState<Student[]>(() => {
     const saved = localStorage.getItem("class_students");
-    return saved ? JSON.parse(saved) : INITIAL_STUDENTS;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          // Filter out transferred student "Tuệ Mẫn"
+          const filtered = parsed.filter((s: Student) => !s.fullName.includes("Tuệ Mẫn"));
+          if (filtered.length >= 32 && filtered[0]?.fullName === "Nguyễn Vũ Hoài An") {
+            return filtered;
+          }
+        }
+      } catch {
+        // Fallback to INITIAL_STUDENTS
+      }
+    }
+    return INITIAL_STUDENTS;
   });
 
   const [attendanceHistory, setAttendanceHistory] = useState<Record<string, DailyAttendance>>(() => {
     const saved = localStorage.getItem("class_attendance");
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const today = new Date().toISOString().slice(0, 10);
+        if (parsed[today] && Object.keys(parsed[today].records || {}).length >= 32) {
+          return parsed;
+        }
+      } catch {
+        // fallback
+      }
+    }
     const today = new Date().toISOString().slice(0, 10);
     return {
       [today]: {
@@ -66,7 +94,17 @@ export default function App() {
 
   const [gradesData, setGradesData] = useState<Record<string, Record<string, { score?: number; level: EvaluationLevel; comment?: string }>>>(() => {
     const saved = localStorage.getItem("class_grades");
-    return saved ? JSON.parse(saved) : INITIAL_GRADES_MOCK;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.math && Object.keys(parsed.math).length >= 32) {
+          return parsed;
+        }
+      } catch {
+        // fallback
+      }
+    }
+    return INITIAL_GRADES_MOCK;
   });
 
   const [timetable, setTimetable] = useState<WeeklyTimetable>(() => {
